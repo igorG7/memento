@@ -209,6 +209,11 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
           <label className="text-sm font-medium text-slate-700">
             Fotos <span className="text-rose-500">*</span>
           </label>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
+            <p className="text-xs font-medium leading-5 text-amber-900">
+              Em caso de erro ao enviar, remova as fotos e selecione novamente para tentar outra vez.
+            </p>
+          </div>
           <FileUploader files={files} onFilesChange={setFiles} />
           {fieldError("files") ? (
             <p className="text-xs font-medium text-rose-600" role="alert">
