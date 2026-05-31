@@ -1,16 +1,23 @@
-'use client';
+"use client";
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import { getGalleryPage } from '@/services/gallery.service';
-import type { GalleryImage, GalleryPageResult, GalleryPaginationMeta } from '@/types';
+import { getGalleryPage } from "@/services/gallery.service";
+import type {
+  GalleryImage,
+  GalleryPageResult,
+  GalleryPaginationMeta,
+} from "@/types";
 
 type UseGalleryPaginationArgs = {
   initialGallery: GalleryPageResult;
   pageSize?: number;
 };
 
-export function useGalleryPagination({ initialGallery, pageSize = 20 }: UseGalleryPaginationArgs) {
+export function useGalleryPagination({
+  initialGallery,
+  pageSize = 10,
+}: UseGalleryPaginationArgs) {
   const [images, setImages] = useState<GalleryImage[]>(initialGallery.images);
   const [meta, setMeta] = useState<GalleryPaginationMeta>(initialGallery.meta);
   const [loading, setLoading] = useState(false);
@@ -26,7 +33,7 @@ export function useGalleryPagination({ initialGallery, pageSize = 20 }: UseGalle
         setImages(result.images);
         setMeta(result.meta);
       } catch {
-        setError('Não foi possível carregar a galeria.');
+        setError("Não foi possível carregar a galeria.");
       } finally {
         setLoading(false);
       }
@@ -35,20 +42,22 @@ export function useGalleryPagination({ initialGallery, pageSize = 20 }: UseGalle
   );
 
   const goToPreviousPage = useCallback(() => {
-    if (meta.page <= 1) {
-      return;
-    }
-
-    void loadPage(meta.page - 1);
-  }, [loadPage, meta.page]);
+    setMeta((current) => {
+      if (current.page > 1) {
+        void loadPage(current.page - 1);
+      }
+      return current;
+    });
+  }, [loadPage]);
 
   const goToNextPage = useCallback(() => {
-    if (meta.page >= meta.totalPages) {
-      return;
-    }
-
-    void loadPage(meta.page + 1);
-  }, [loadPage, meta.page, meta.totalPages]);
+    setMeta((current) => {
+      if (current.page < current.totalPages) {
+        void loadPage(current.page + 1);
+      }
+      return current;
+    });
+  }, [loadPage]);
 
   const refresh = useCallback(() => {
     void loadPage(meta.page);

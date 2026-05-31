@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 type GalleryPaginationProps = {
   currentPage: number;
@@ -17,54 +17,54 @@ export function GalleryPagination({
   onPreviousPage,
   onNextPage,
 }: GalleryPaginationProps) {
+  function handlePrevious() {
+    if (onPreviousPage) {
+      onPreviousPage();
+    } else {
+      onPageChange(Math.max(1, currentPage - 1));
+    }
+  }
+
+  function handleNext() {
+    if (onNextPage) {
+      onNextPage();
+    } else {
+      onPageChange(Math.min(totalPages, currentPage + 1));
+    }
+  }
+
+  if (totalPages <= 1) {
+    return null;
+  }
+
   return (
     <nav
       aria-label="Paginação da galeria"
-      className="flex flex-col gap-4 rounded-[1.5rem] border border-border bg-white px-4 py-4 sm:flex-row sm:items-center sm:justify-between"
+      className="flex w-full max-w-full flex-wrap items-center justify-between gap-4 rounded-[1.5rem] border border-border bg-white px-4 py-3"
     >
-      <p className="text-sm text-slate-600">
-        Página <span className="font-semibold text-slate-950">{currentPage}</span> de{' '}
+      <p className="min-w-0 text-sm text-slate-600">
+        Página{" "}
+        <span className="font-semibold text-slate-950">{currentPage}</span> de{" "}
         <span className="font-semibold text-slate-950">{totalPages}</span>
       </p>
-      <div className="flex flex-wrap items-center gap-2">
+
+      <div className="flex max-w-full flex-wrap items-center gap-2">
         <Button
           variant="secondary"
-          onClick={() => {
-            if (onPreviousPage) {
-              onPreviousPage();
-              return;
-            }
-
-            onPageChange(Math.max(1, currentPage - 1));
-          }}
-          disabled={loading || totalPages <= 1 || currentPage === 1}
+          onClick={handlePrevious}
+          disabled={loading || currentPage === 1}
         >
           Anterior
         </Button>
-        <div className="flex flex-wrap items-center gap-2">
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-            <Button
-              key={page}
-              variant={page === currentPage ? 'primary' : 'secondary'}
-              onClick={() => onPageChange(page)}
-              disabled={loading}
-              aria-current={page === currentPage ? 'page' : undefined}
-            >
-              {page}
-            </Button>
-          ))}
-        </div>
+
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-950 text-sm font-semibold text-white">
+          {currentPage}
+        </span>
+
         <Button
           variant="secondary"
-          onClick={() => {
-            if (onNextPage) {
-              onNextPage();
-              return;
-            }
-
-            onPageChange(Math.min(totalPages, currentPage + 1));
-          }}
-          disabled={loading || totalPages <= 1 || currentPage === totalPages}
+          onClick={handleNext}
+          disabled={loading || currentPage === totalPages}
         >
           Próxima
         </Button>

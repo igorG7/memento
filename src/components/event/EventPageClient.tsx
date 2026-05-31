@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useImageModal } from '@/hooks/use-image-modal';
-import { useGalleryPagination } from '@/hooks/use-gallery-pagination';
-import { HeroSection } from '@/components/hero/HeroSection';
-import { GalleryGrid } from '@/components/gallery/GalleryGrid';
-import { ImageModal } from '@/components/gallery/ImageModal';
-import { UploadForm } from '@/components/upload/UploadForm';
-import type { Event, GalleryPageResult } from '@/types';
+import { useImageModal } from "@/hooks/use-image-modal";
+import { useGalleryPagination } from "@/hooks/use-gallery-pagination";
+import { HeroSection } from "@/components/hero/HeroSection";
+import { GalleryGrid } from "@/components/gallery/GalleryGrid";
+import { ImageModal } from "@/components/gallery/ImageModal";
+import { UploadForm } from "@/components/upload/UploadForm";
+import type { Event, GalleryPageResult } from "@/types";
 
 type EventPageClientProps = {
   event: Event;
@@ -14,14 +14,23 @@ type EventPageClientProps = {
 };
 
 export function EventPageClient({ event, gallery }: EventPageClientProps) {
-  const { images, meta, loading, error, loadPage, goToNextPage, goToPreviousPage } = useGalleryPagination({
+  const {
+    images,
+    meta,
+    loading,
+    error,
+    loadPage,
+    goToNextPage,
+    goToPreviousPage,
+  } = useGalleryPagination({
     initialGallery: gallery,
     pageSize: gallery.meta.limit,
   });
+
   const modal = useImageModal(images);
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
+    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 overflow-x-hidden px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
       <HeroSection
         eyebrow={event.name}
         title="Álbum Instantâneo"
@@ -35,12 +44,16 @@ export function EventPageClient({ event, gallery }: EventPageClientProps) {
             void loadPage(1);
           }}
         />
-        <section className="space-y-4 rounded-[2rem] border border-border bg-white/95 p-6 shadow-soft sm:p-8">
+        <section className="min-w-0 space-y-4 rounded-[2rem] border border-border bg-white/95 p-6 shadow-soft sm:p-8">
           <div className="space-y-2">
             <div>
-              <h2 className="text-2xl font-semibold text-slate-950">Momentos Compartilhados</h2>
+              <h2 className="text-2xl font-semibold text-slate-950">
+                Momentos Compartilhados
+              </h2>
               <p className="mt-1 text-sm text-slate-500">
-                Interface preparada para receber thumbnails do Cloudinary e uma galeria viva.
+                {meta.total > 0
+                  ? `${meta.total} foto${meta.total > 1 ? "s" : ""} compartilhada${meta.total > 1 ? "s" : ""}`
+                  : "Nenhuma foto ainda — seja o primeiro!"}
               </p>
             </div>
             {error ? <p className="text-sm text-rose-700">{error}</p> : null}

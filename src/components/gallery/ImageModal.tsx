@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import type { GalleryImage } from '@/types';
+import { Button } from "@/components/ui/button";
+import type { GalleryImage } from "@/types";
 
 type ImageModalProps = {
   image: GalleryImage | null;
@@ -11,7 +11,13 @@ type ImageModalProps = {
   onPrevious: () => void;
 };
 
-export function ImageModal({ image, hasMultiple, onClose, onNext, onPrevious }: ImageModalProps) {
+export function ImageModal({
+  image,
+  hasMultiple,
+  onClose,
+  onNext,
+  onPrevious,
+}: ImageModalProps) {
   if (!image) {
     return null;
   }
@@ -28,24 +34,38 @@ export function ImageModal({ image, hasMultiple, onClose, onNext, onPrevious }: 
         className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-glow"
         onClick={(event) => event.stopPropagation()}
       >
-        <img src={image.thumbnailUrl} alt={image.alt} className="max-h-[75vh] w-full object-contain bg-slate-950" />
-        <div className="flex items-center justify-between gap-4 p-5">
-          <div>
+        <img
+          src={image.thumbnailUrl}
+          alt={image.alt}
+          className="max-h-[75vh] w-full object-contain bg-slate-950"
+        />
+        <div className="border-t border-border p-4 text-center sm:p-5">
+          <div className="space-y-1">
             <p className="text-sm font-semibold text-slate-950">{image.authorName}</p>
             <p className="text-xs text-slate-500">{image.category}</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             {hasMultiple ? (
               <>
-                <Button variant="secondary" onClick={onPrevious}>
+                <Button
+                  variant="secondary"
+                  onClick={onPrevious}
+                  className="px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm"
+                >
                   Anterior
                 </Button>
-                <Button variant="secondary" onClick={onNext}>
+                <Button
+                  variant="secondary"
+                  onClick={onNext}
+                  className="px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm"
+                >
                   Próxima
                 </Button>
               </>
             ) : null}
-            <Button onClick={onClose}>Fechar</Button>
+            <Button className="px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm" onClick={onClose}>
+              Fechar
+            </Button>
           </div>
         </div>
       </div>

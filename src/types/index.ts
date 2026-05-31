@@ -28,7 +28,12 @@ export type GalleryPaginationMeta = {
   hasPrevPage: boolean;
 };
 
-export type UploadStatus = 'idle' | 'validating' | 'uploading' | 'success' | 'error';
+export type UploadStatus =
+  | "idle"
+  | "validating"
+  | "uploading"
+  | "success"
+  | "error";
 
 export type UploadPayload = {
   eventId: string;
