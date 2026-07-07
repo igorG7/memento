@@ -98,8 +98,15 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
         online: navigator.onLine,
         connectionType:
           (navigator as any).connection?.effectiveType ?? "unknown",
+        saveData: (navigator as any).connection?.saveData ?? "unknown",
+        rtt: (navigator as any).connection?.rtt ?? "unknown",
+        downlink: (navigator as any).connection?.downlink ?? "unknown",
         timestamp: new Date().toISOString(),
       };
+
+      setMessage(
+        `${diagnostics.errorMessage} | online=${diagnostics.online} | conn=${diagnostics.connectionType} | saveData=${diagnostics.saveData} | rtt=${diagnostics.rtt} | downlink=${diagnostics.downlink}`,
+      );
 
       console.error("Upload failed diagnostics:", diagnostics);
 
