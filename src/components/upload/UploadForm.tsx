@@ -91,10 +91,20 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
     } catch (error) {
       setStatus("error");
       setProgress(0);
+
+      const diagnostics = {
+        errorName: error instanceof Error ? error.name : "unknown",
+        errorMessage: error instanceof Error ? error.message : String(error),
+        online: navigator.onLine,
+        connectionType:
+          (navigator as any).connection?.effectiveType ?? "unknown",
+        timestamp: new Date().toISOString(),
+      };
+
+      console.error("Upload failed diagnostics:", diagnostics);
+
       setMessage(
-        error instanceof Error
-          ? error.message
-          : "Não foi possível enviar suas fotos. Tente novamente.",
+        `${diagnostics.errorMessage} | online=${diagnostics.online} | conn=${diagnostics.connectionType}`,
       );
     }
   }
@@ -211,7 +221,8 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
           </label>
           <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
             <p className="text-xs font-medium leading-5 text-amber-900">
-              Em caso de erro ao enviar, remova as fotos e selecione novamente para tentar outra vez.
+              Em caso de erro ao enviar, remova as fotos e selecione novamente
+              para tentar outra vez.
             </p>
           </div>
           <FileUploader files={files} onFilesChange={setFiles} />
