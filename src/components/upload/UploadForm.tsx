@@ -109,10 +109,6 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       );
 
       console.error("Upload failed diagnostics:", diagnostics);
-
-      setMessage(
-        `${diagnostics.errorMessage} | online=${diagnostics.online} | conn=${diagnostics.connectionType}`,
-      );
     }
   }
 
