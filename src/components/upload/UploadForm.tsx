@@ -109,6 +109,14 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       );
 
       console.error("Upload failed diagnostics:", diagnostics);
+
+      fetch("/api/log-client-error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(diagnostics),
+      }).catch(() => {
+        // Se até esse log falhar, ignora silenciosamente — não deve afetar o fluxo principal
+      });
     }
   }
 
