@@ -105,7 +105,7 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       };
 
       setMessage(
-        `${diagnostics.errorMessage} | online=${diagnostics.online} | conn=${diagnostics.connectionType} | saveData=${diagnostics.saveData} | rtt=${diagnostics.rtt} | downlink=${diagnostics.downlink}`,
+        `${diagnostics.errorName} | ${diagnostics.errorMessage} | online=${diagnostics.online} | conn=${diagnostics.connectionType} | saveData=${diagnostics.saveData} | rtt=${diagnostics.rtt} | downlink=${diagnostics.downlink}`,
       );
 
       console.error("Upload failed diagnostics:", diagnostics);
