@@ -92,6 +92,8 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       setStatus("error");
       setProgress(0);
 
+      confirm(`${error}`);
+
       const diagnostics = {
         errorName: error instanceof Error ? error.name : "unknown",
         errorMessage: error instanceof Error ? error.message : String(error),
