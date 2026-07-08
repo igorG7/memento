@@ -71,7 +71,7 @@ export const GallerySection = forwardRef<
         />
       </section>
 
-      <p>Total de fotos: {gallery.meta.total}</p>
+      {/* <p>Total de fotos: {gallery.meta.total}</p> */}
 
       <ImageModal
         image={modal.activeImage}

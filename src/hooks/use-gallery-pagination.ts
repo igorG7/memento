@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 
-import { getGalleryPage } from "@/services/gallery.service";
+import { getGalleryPage } from "@/services/gallery-axios.service";
 import type {
   GalleryImage,
   GalleryPageResult,

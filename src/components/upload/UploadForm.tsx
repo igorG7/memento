@@ -14,7 +14,7 @@ import { FileUploader } from "@/components/upload/FileUploader";
 import {
   uploadEventPhotos,
   validateUploadPayload,
-} from "@/services/upload.service";
+} from "@/services/upload-axios.service";
 import type { UploadStatus } from "@/types";
 
 type UploadFormProps = {
@@ -92,6 +92,8 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       setStatus("error");
       setProgress(0);
 
+      confirm(`${error}`);
+
       const diagnostics = {
         errorName: error instanceof Error ? error.name : "unknown",
         errorMessage: error instanceof Error ? error.message : String(error),
@@ -109,6 +111,14 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       );
 
       console.error("Upload failed diagnostics:", diagnostics);
+
+      fetch("/api/log-client-error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(diagnostics),
+      }).catch(() => {
+        // Se até esse log falhar, ignora silenciosamente — não deve afetar o fluxo principal
+      });
     }
   }
 
