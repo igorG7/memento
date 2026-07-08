@@ -14,7 +14,7 @@ import { FileUploader } from "@/components/upload/FileUploader";
 import {
   uploadEventPhotos,
   validateUploadPayload,
-} from "@/services/upload.service";
+} from "@/services/upload-axios.service";
 import type { UploadStatus } from "@/types";
 
 type UploadFormProps = {
