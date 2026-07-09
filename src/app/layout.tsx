@@ -5,6 +5,11 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Memento',
+  icons: {
+    icon: '/M.png',
+    shortcut: '/M.png',
+    apple: '/M.png',
+  },
   description: 'Álbuns colaborativos instantâneos para eventos.',
 };
 
