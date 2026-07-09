@@ -8,7 +8,7 @@ export default function HomePage() {
           Memento
         </p>
         <h1 className="mt-4 font-display text-4xl text-slate-950 sm:text-5xl">
-          Marcelo e Bianca
+          Gabriel & Nicole
         </h1>
         <p className="mt-4 text-sm leading-6 text-slate-600">
           Um álbum colaborativo para registrar os momentos mais especiais da
