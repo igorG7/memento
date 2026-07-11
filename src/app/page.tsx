@@ -19,7 +19,7 @@ export default function HomePage() {
           a construir essa memória junto com os noivos.
         </p>
         <Link
-          href="/e/marcelo-bianca"
+          href="/e/gabriel-nicole"
           className="mt-8 inline-flex rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-soft"
         >
           Ver álbum do casamento
