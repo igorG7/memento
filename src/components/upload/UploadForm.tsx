@@ -87,6 +87,7 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
       setStatus(response.status);
       setMessage(response.message);
       setFiles([]);
+      setSubmitted(false);
       onUploaded?.();
     } catch (error) {
       setStatus("error");
@@ -127,7 +128,7 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
   return (
     <section
       id="upload-section"
-      className="rounded-[2rem] border border-border bg-white/95 p-6 shadow-soft sm:p-8"
+      className="min-w-0 rounded-[2rem] border border-border bg-white/95 p-6 shadow-soft sm:p-8"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -142,9 +143,9 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
         {isBusy ? <Spinner /> : null}
       </div>
 
-      <form className="mt-6 space-y-5" onSubmit={onSubmit} noValidate>
+      <form className="mt-6 min-w-0 space-y-5" onSubmit={onSubmit} noValidate>
         {/* Guest name */}
-        <div className="space-y-1.5">
+        <div className="min-w-0 space-y-1.5">
           <label
             htmlFor="guestName"
             className="text-sm font-medium text-slate-700"
@@ -183,7 +184,7 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
         </div>
 
         {/* Category */}
-        <div className="space-y-1.5">
+        <div className="min-w-0 space-y-1.5">
           <label
             htmlFor="category"
             className="text-sm font-medium text-slate-700"
@@ -228,7 +229,7 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
         </div>
 
         {/* File upload */}
-        <div className="space-y-1.5">
+        <div className="min-w-0 space-y-1.5">
           <label className="text-sm font-medium text-slate-700">
             Fotos <span className="text-rose-500">*</span>
           </label>
@@ -259,6 +260,12 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
           />
         ) : null}
         {status === "success" ? <SuccessMessage onReset={resetForm} /> : null}
+
+        {validationErrors.length > 0 ? (
+          <p className="text-xs font-medium text-rose-600">
+            Termine de preencher o formulário para realizar o envio.
+          </p>
+        ) : null}
 
         {/* Submit */}
         {status !== "success" ? (

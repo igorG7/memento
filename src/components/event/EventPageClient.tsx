@@ -27,7 +27,7 @@ export function EventPageClient({
         subtitle="Ajude a gente a guardar os momentos mais espontâneos desse dia."
         description="Vale selfie, bastidor, foto tremida, flagra engraçado, pista de dança e tudo que tiver a nossa cara."
       />
-      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
         <UploadForm
           eventId={event.eventId}
           onUploaded={() => {

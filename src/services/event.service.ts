@@ -1,6 +1,18 @@
 import type { Event } from '@/types';
 
 const eventCatalog: Record<string, Event> = {
+  'gabriel-nicole': {
+    id: 'event_gabriel_nicole',
+    eventId: 'casamento',
+    slug: 'gabriel-nicole',
+    name: 'Gabriel e Nicole',
+    subtitle: 'Um álbum vivo para capturar tudo o que escapa do roteiro.',
+    description:
+      'Compartilhe fotos espontâneas do evento em segundos, sem login e sem fricção.',
+    dateLabel: 'Celebração especial',
+    coverImage:
+      'https://res.cloudinary.com/demo/image/upload/w_1400,c_fill,q_auto,f_auto/sample.jpg',
+  },
   'marcelo-bianca': {
     id: 'event_marcelo_bianca',
     eventId: 'casamento',

@@ -16,11 +16,11 @@ function formatFileSize(size: number) {
 export function ImagePreviewCard({ file, onRemove }: ImagePreviewCardProps) {
   return (
     <article className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-slate-50 px-4 py-3 shadow-sm">
-      <div className="min-w-0">
-        <p className="truncate text-sm font-semibold text-slate-950">{file.name}</p>
+      <div className="min-w-0 flex-1">
+        <p className="max-w-full truncate text-sm font-semibold text-slate-950">{file.name}</p>
         <p className="text-xs text-slate-500">{formatFileSize(file.size)}</p>
       </div>
-      <Button variant="ghost" aria-label={`Remover ${file.name}`} onClick={onRemove}>
+      <Button className="shrink-0" variant="ghost" aria-label={`Remover ${file.name}`} onClick={onRemove}>
         Remover
       </Button>
     </article>

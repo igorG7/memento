@@ -63,7 +63,7 @@ export function FileUploader({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="min-w-0 space-y-3">
       <div
         className={`flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border-2 border-dashed p-6 text-center transition ${
           isDragging
@@ -105,20 +105,20 @@ export function FileUploader({
       </div>
 
       {/* File list indicator */}
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+      <div className="min-w-0 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
         <p className="text-sm font-semibold text-slate-900" aria-live="polite">
           {files.length === 0
             ? "Nenhum arquivo selecionado"
             : `${files.length} arquivo${files.length > 1 ? "s" : ""} selecionado${files.length > 1 ? "s" : ""}`}
         </p>
         {files.length > 0 && (
-          <ul className="mt-3 space-y-2">
+          <ul className="mt-3 min-w-0 space-y-2">
             {files.map((file, index) => (
               <li
                 key={`${file.name}-${index}`}
-                className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm"
+                className="flex min-w-0 items-center justify-between gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm"
               >
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <p className="truncate text-sm font-medium text-slate-900">
                     {file.name}
                   </p>
