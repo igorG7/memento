@@ -235,8 +235,9 @@ export function UploadForm({ eventId, onUploaded }: UploadFormProps) {
           </label>
           <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
             <p className="text-xs font-medium leading-5 text-amber-900">
-              Em caso de erro ao enviar, remova as fotos e selecione novamente
-              para tentar outra vez.
+              Em caso siga esses passos:
+              <br /> Recarrega a página e veja se suas fotos foram recarregadas.
+              <br /> Caso não apareçam, selecione as fotos novamente e clique em "Publicar no álbum"
             </p>
           </div>
           <FileUploader files={files} onFilesChange={setFiles} />
