@@ -23,7 +23,7 @@ export function FileUploader({
   files,
   onFilesChange,
   maxFiles = 5,
-  maxFileSizeInMB = 20,
+  maxFileSizeInMB = 100,
 }: FileUploaderProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const inputId = useId();
