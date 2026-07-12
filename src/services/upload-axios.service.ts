@@ -15,7 +15,7 @@ const allowedMimeTypes = new Set([
 ]);
 const allowedExtensions = [".jpg", ".jpeg", ".png", ".heic"];
 const maxFiles = 5;
-const maxFileSizeInBytes = 100 * 1024 * 1024;
+const maxFileSizeInBytes = 20 * 1024 * 1024;
 
 export type ValidationError = {
   field: "guestName" | "category" | "files";
