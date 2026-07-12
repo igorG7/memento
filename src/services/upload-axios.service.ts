@@ -5,6 +5,8 @@ import { mapUploadedPhotoToGalleryImage } from "@/services/gallery-axios.service
 import type { UploadPayload, UploadResponse } from "@/types";
 import type { ApiUploadPhotosResponse } from "@/types/api";
 
+//comentario
+
 const allowedMimeTypes = new Set([
   "image/jpeg",
   "image/png",
@@ -13,7 +15,7 @@ const allowedMimeTypes = new Set([
 ]);
 const allowedExtensions = [".jpg", ".jpeg", ".png", ".heic"];
 const maxFiles = 5;
-const maxFileSizeInBytes = 20 * 1024 * 1024;
+const maxFileSizeInBytes = 100 * 1024 * 1024;
 
 export type ValidationError = {
   field: "guestName" | "category" | "files";
